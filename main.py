@@ -1,9 +1,8 @@
-#loading whisper AI (Speach recognition), lite version (Enflish only, more responsive)
-# Use a pipeline as a high-level helper
 from transformers import pipeline
 import gradio as gr
 import os
 
+#loading whisper AI (Speach recognition), lite version (Enflish only, more responsive)
 asr = pipeline("automatic-speech-recognition", model="facebook/wav2vec2-base-960h")
 
 # Initialize the Gradio Blocks
