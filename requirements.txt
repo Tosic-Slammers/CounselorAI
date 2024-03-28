@@ -1,0 +1,6 @@
+datasets==2.18.0
+gradio==4.24.0
+gradio_client==0.14.0
+librosa @ file:///home/conda/feedstock_root/build_artifacts/librosa_1692209066689/work
+soundfile @ file:///home/conda/feedstock_root/build_artifacts/pysoundfile_1676571469739/work
+transformers==4.39.2
