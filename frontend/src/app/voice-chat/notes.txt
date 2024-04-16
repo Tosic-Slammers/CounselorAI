@@ -1,2 +1,4 @@
+Made SpeechRec into a flask file. Need to run SpeechRec for the voice-page listen button to work.
+
 Make sure to install PyAudio, SpeechRecognition, Flask, and flask-cors
 using pip install {library name}
