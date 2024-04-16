@@ -1,0 +1,2 @@
+Make sure to install PyAudio, SpeechRecognition, Flask, and flask-cors
+using pip install {library name}
