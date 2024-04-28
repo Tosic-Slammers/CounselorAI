@@ -14,7 +14,9 @@ def speech_to_text():
         print("Calibrating for background noise. Please wait...")
         r.adjust_for_ambient_noise(source, duration=1)
         print("Please speak into the microphone.")
+        # Starts listening
         audio = r.listen(source, timeout=10)
+        # Finishes listening
         try:
             text = r.recognize_google(audio)
             return jsonify({"message": "You: " + text})
