@@ -17,6 +17,7 @@ def speech_to_text():
         # Starts listening
         audio = r.listen(source, timeout=10)
         # Finishes listening
+        print("Processing audio...")
         try:
             text = r.recognize_google(audio)
             return jsonify({"message": "You: " + text})
