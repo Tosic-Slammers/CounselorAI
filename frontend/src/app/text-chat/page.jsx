@@ -23,11 +23,11 @@ export default function TextChat() {
   };
 
   return (
-      <div className="min-h-screen bg-gray-50 flex flex-col justify-center px-6">
+      <div className="min-h-screen bg-gray-50 flex flex-col justify-center " >
         <h1 className="text-5xl font-bold text-gray-800 mb-6 mt-10">
            Type to chat with your AI therapist
         </h1>
-        <div className="bg-white shadow overflow-hidden rounded-lg mb-6 border-purple-600 border- ">
+        <div className="bg-white shadow-lg overflow-hidden rounded-lg mb-6 border-purple-600 border- ">
           <div className="px-4 py-5 sm:p-6 space-y-4">
             {messages.map((message, index) => (
               <div key={index} className={`text-gray-800 text-lg ${message.sender === 'user' ? 'text-right' : ''}`}>
