@@ -1,14 +1,28 @@
 "use client"
 import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function TextChat() {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
-  const handleSendClick = () => {
+  const handleSendClick = async () => {
     if (inputValue.trim() !== '') {
-      setMessages([...messages, { text: inputValue, sender: 'user' }]);
-      setInputValue('');
+      try {
+        
+        const response = await axios.post('http://localhost:5001/counselorai', {
+          text: inputValue
+        });
+        console.log(response.data)
+        setMessages([...messages, 
+          { text: inputValue, sender: 'user' }, 
+          { text: response.data.text, sender:"ai" }
+        ]);
+        setInputValue('');
+      }
+      catch (error) {   //catch any errors
+        console.error("Error", error);
+      }
     }
   };
 

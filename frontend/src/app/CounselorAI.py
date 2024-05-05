@@ -13,7 +13,9 @@ r = sr.Recognizer()
 @app.route('/counselorai', methods=['POST'])
 def counselorai():
     text = request.json.get('text', '')
-    return text + '\n This works!'
+    print("message: ", text)
+    response = jsonify({"text": "Therapist: " + text + " working"})
+    return response
 
 @app.route('/speech_to_text', methods=['POST','GET'])
 def speech_to_text():
