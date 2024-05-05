@@ -10,7 +10,7 @@ function VoiceChatPage() {
     if (!listening) {
       setListening(true);
       try {
-        const result = await axios.post('http://localhost:5000/speech_to_text');
+        const result = await axios.post('http://localhost:5001/speech_to_text');
         setResponse(result.data.message);
       } catch (error) {
         setResponse('Error: Failed to fetch data');
