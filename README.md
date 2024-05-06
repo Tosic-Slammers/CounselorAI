@@ -58,3 +58,15 @@ Follow these instructions to set up the project on your local machine for develo
 
     ```bash
     python main.py
+
+
+## Key Features
+1. Instant Mental Health Counseling at the click of a button. No user information will be saved with this application so anonimity as well!
+2. Trained on data specifically chosen by professionals in the field. CounselorAI's RAG is a collection of literature that helped the likes of Licensed Social Workers, PHD-Holding Therapists, and Business-Owning Liscensed Mental Health Counselors learn the art of helping someone. List of books coming soon!
+3. *NEW* Speak with your counselor! Now with the implementation of a 3rd party library, we've set up a feature to allow for audible conversations from both sides within CounselorAI
+
+
+## DEMO
+### RAG Output vs. Base LLM Model
+![Therapist Emotional Connection Q](https://i.imgur.com/raT3l89.png)
+![Therapist Emotional Connection Q](https://i.imgur.com/qpAnimK.png)
