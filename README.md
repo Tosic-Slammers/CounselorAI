@@ -79,7 +79,7 @@ When Presented with the two responses above, we found a unanimous decision in fa
 In tests with Human Feedback with our RAG model, we have found users to prefer our RAG model for mental health services over Chat GPT 3.5 Turbo
 
 ## License
-Distributed under the MIT License. See LICENSE for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/GeorgiosIoannouCoder/realesrgan/blob/main/LICENSE) for more information.
 
 MIT License
 
