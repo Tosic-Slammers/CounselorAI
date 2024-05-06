@@ -70,3 +70,10 @@ Follow these instructions to set up the project on your local machine for develo
 ### RAG Output vs. Base LLM Model
 ![Therapist Emotional Connection Q](https://i.imgur.com/raT3l89.png)
 ![Therapist Emotional Connection Q](https://i.imgur.com/qpAnimK.png)
+When Presented with the two responses above, we found a unanimous decision in favor of our RAG model over ChatGPT 3.5 Turbo
+
+![Therapist Emotional Connection Q](https://i.imgur.com/3Fe4sp3.png)
+![Therapist Emotional Connection Q](https://i.imgur.com/mMcaTLy.png)
+When Presented with the two responses above, we found a unanimous decision in favor of our RAG model over ChatGPT 3.5 Turbo
+
+In tests with Human Feedback with our RAG model, we have found users to prefer our RAG model for mental health services over Chat GPT 3.5 Turbo
