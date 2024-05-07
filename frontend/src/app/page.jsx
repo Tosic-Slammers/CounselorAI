@@ -2,7 +2,7 @@ export default function Home() {
   return (
       <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center px-6">
         <h1 className="text-5xl font-bold text-gray-800 mb-2">
-          AI Therapist
+          CounselorAI
         </h1>
         <p className="text-gray-600 text-lg mb-10">
           your personal ai mental health therapist accessible 24/7

@@ -37,10 +37,15 @@ export default function TextChat() {
   };
 
   return (
+    
+    
       <div className="min-h-screen bg-gray-50 flex flex-col justify-center " >
-        <h1 className="text-5xl font-bold text-gray-800 mb-6 mt-10">
-           Type to chat with your AI therapist
+        <h1 className='text-center font-bold text-5xl text-gray-800'>
+          CounselorAI
         </h1>
+        <h2 className="text-4xl font-bold text-gray-800 mb-6 mt-10">
+           Type to chat with your AI therapist
+        </h2>
         <div className="bg-white shadow-lg overflow-hidden rounded-lg mb-6 border-purple-600 border- ">
           <div className="px-4 py-5 sm:p-6 space-y-4">
             {messages.map((message, index) => (
