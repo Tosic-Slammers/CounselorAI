@@ -30,18 +30,34 @@ function VoiceChatPage() {
 
   //TTS
   const fetchAudio = async (text) => {
-    const tts = await fetch('http://localhost:5001/text_to_speech', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text }), 
-    });
-
-    const audioBlob = await tts.blob();
-    const url = URL.createObjectURL(audioBlob);
-    setAudioURL(url);
+    try {
+        console.log('Sending text-to-speech request...');
+        const tts = await fetch('http://localhost:5001/text_to_speech', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ text }),
+        });
+        if (!tts.ok) {
+            console.error('TTS request failed', tts.status, tts.statusText);
+            return;
+        }
+        const audioBlob = await tts.blob();
+        const newUrl = URL.createObjectURL(audioBlob);
+        if (audioURL) {
+            URL.revokeObjectURL(audioURL);
+        }
+        setAudioURL(null);
+        setTimeout(() => {
+            setAudioURL(newUrl);
+        }, 0);
+        console.log('New Audio URL:', newUrl);
+    } catch (error) {
+        console.error('Error fetching audio:', error);
+    }
   };
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -71,7 +87,7 @@ function VoiceChatPage() {
           ></div>
         </button>
         {audioURL && (
-                <audio controls>
+                <audio key={audioURL} controls className="mt-4">
                     <source src={audioURL} type="audio/mpeg" />
                     Your browser does not support the audio element.
                 </audio>
