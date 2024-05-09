@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_file
 from flask_cors import CORS
 import speech_recognition as sr
 import requests
@@ -8,6 +8,13 @@ from model.mongoRAG import OpenAI_init_LLM, rag_template, conn_to_cluster, get_v
 from openai import OpenAI
 from pymongo import MongoClient
 
+
+# pip install elevenlabs
+from typing import IO
+from io import BytesIO
+from elevenlabs import VoiceSettings
+from elevenlabs.client import ElevenLabs
+
 app = Flask(__name__)
 CORS(app)  
 
@@ -16,6 +23,11 @@ load_dotenv()
 
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 MONGO_URI = os.getenv('MONGO_URI')
+
+ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY")
+client = ElevenLabs(
+    api_key=ELEVENLABS_API_KEY,
+)
 
 # Initialize the recognizer
 r = sr.Recognizer()
@@ -74,6 +86,47 @@ def speech_to_text():
             return jsonify({"message": "You: " + response.text})
         except Exception as e:
             return jsonify({"error": str(e)})
+
+@app.route('/text_to_speech', methods=['POST'])
+def text_to_speech_stream():
+    print("Incoming request data:", request.get_json())
+    request_data = request.get_json()
+
+    if not request_data or 'text' not in request_data:
+            return jsonify(error="Missing 'text' field in the JSON payload"), 400
+
+    text = request_data.get('text', '')
+    print(f"Received text: {text}")
+
+    # Perform the text-to-speech conversion
+    response = client.text_to_speech.convert(
+        voice_id="pNInz6obpgDQGcFmaJgB", # Adam pre-made voice
+        optimize_streaming_latency="0",
+        output_format="mp3_22050_32",
+        text=text,
+        model_id="eleven_multilingual_v2",
+        voice_settings=VoiceSettings(
+            stability=0.0,
+            similarity_boost=1.0,
+            style=0.0,
+            use_speaker_boost=True,
+        ),
+    )
+
+    # Create a BytesIO object to hold the audio data in memory
+    audio_stream = BytesIO()
+
+    # Write each chunk of audio data to the stream
+    for chunk in response:
+        if chunk:
+            audio_stream.write(chunk)
+
+    # Reset stream position to the beginning
+    audio_stream.seek(0)
+
+    # Return the stream for further use
+    return send_file(audio_stream, mimetype='audio/mpeg', as_attachment=False, download_name="audio.mp3")
+
 
 if __name__ == '__main__':
     app.run(port=5001)

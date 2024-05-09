@@ -6,6 +6,7 @@ function VoiceChatPage() {
   const [response, setResponse] = useState('');
   const [listening, setListening] = useState(false);
   const [conversationHistory, setConversationHistory] = useState([]);
+  const [audioURL, setAudioURL] = useState(null);
 
   const handleToggleListening = async () => {
     setListening(current => !current);
@@ -16,6 +17,8 @@ function VoiceChatPage() {
         const newHistory = [...conversationHistory, { text: message }];
         setConversationHistory(newHistory);
         setResponse(message);
+
+        await fetchAudio(message);
       } catch (error) {
         const newHistory = [...conversationHistory, { text: 'Error: Failed to fetch data' }];
         setConversationHistory(newHistory);
@@ -23,6 +26,21 @@ function VoiceChatPage() {
         console.error('Error fetching data:', error);
       }
     }
+  };
+
+  //TTS
+  const fetchAudio = async (text) => {
+    const tts = await fetch('http://localhost:5001/text_to_speech', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text }), 
+    });
+
+    const audioBlob = await tts.blob();
+    const url = URL.createObjectURL(audioBlob);
+    setAudioURL(url);
   };
 
   return (
@@ -52,6 +70,12 @@ function VoiceChatPage() {
             className={`${listening ? 'bg-purple-300' : 'bg-purple-200'} w-3/4 h-3/4 rounded-full`}
           ></div>
         </button>
+        {audioURL && (
+                <audio controls>
+                    <source src={audioURL} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
+            )}
         <div className="mt-6 bg-gray-200 p-6 w-full max-w-xl h-64 overflow-auto text-gray-700 text-lg">
           {conversationHistory.map((entry, index) => (
             <p key={index} className={`text-left ${entry.text && entry.text.startsWith("Error:") ? 'text-red-600' : 'text-blue-600'}`}>
