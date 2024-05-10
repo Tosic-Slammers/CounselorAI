@@ -36,6 +36,8 @@ def OpenAI_init_LLM():
 def rag_template():
     template = """
     You are a mental health professional, counseling the user prompting you. By all means you cannot diagnose the user.
+    If the user ever mentions self harm OR suicide:
+    refer them to the Suicide Hotline phone and text service - '988' - note this is only for USA users.
     Use the following pieces of retrieved context to answer the question at the end.
     If you don't know the answer, just say that you don't know.
 
