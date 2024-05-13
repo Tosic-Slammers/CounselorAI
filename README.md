@@ -13,7 +13,7 @@ For hosting our literature, we decided on MongoDB, utilizing their new Atlas Vec
 Yes, ChatGPT is a very capable LLM. What ChatGPT does not offer is a sourced database of material handpicked from professionals of the mental health field. ~20 books are used in this program to keep within the scope of the conversation, whilst also being a counselor to the user.
 
 ## Sources Used In Our Rag Model
-![Books_used_in_RAG](https://imgur.com/a/iHScGPu](https://i.imgur.com/lFNDRcN.png)
+![Books_used_in_RAG](https://i.imgur.com/lFNDRcN.png)
 
 ## Examples
 ![ex pic](https://cdn.discordapp.com/attachments/1209124237848223829/1238167581752299631/image.png?ex=663f9e6b&is=663e4ceb&hm=fd2ad33b9cf7416d61d5bba9dafffc2a4e985a397dd99bf45a2442bc8adafa3c&)
