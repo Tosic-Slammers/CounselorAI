@@ -32,9 +32,9 @@ client = ElevenLabs(
 # Initialize the recognizer
 r = sr.Recognizer()
 
-# model initialization
-print("initalize LLM")
-llm = OpenAI_init_LLM()
+# model initialization, inited in mongoRAG.py 
+#print("initalize LLM")
+#llm = OpenAI_init_LLM()
 
 '''
 try:
@@ -50,8 +50,8 @@ except Exception as e:
 
 '''
 # llm prompt initialization
-print("initalize prompt template")
-custom_rag_prompt = rag_template()
+#print("initalize prompt template")
+#custom_rag_prompt = rag_template()
 
 # connect to mongodb
 print("initalize mongo connection")
@@ -59,14 +59,14 @@ MONGODB_COLLECTION = conn_to_cluster(MONGO_URI)
 
 # get vectorstore
 print("initalize vectorstore")
-vectorstore = get_vectorstore(MONGODB_COLLECTION)
+#vectorstore = get_vectorstore(MONGODB_COLLECTION)
 
 print("model loaded\n")
 
 @app.route('/counselorai', methods=['POST'])
 def counselorai():
     text = request.json.get('text', '')
-    llm_output = process(llm, vectorstore, text)
+    llm_output = process(MONGODB_COLLECTION, vectorstore, text)
     response = jsonify({"text": "Therapist: " + llm_output})
     return response
 
