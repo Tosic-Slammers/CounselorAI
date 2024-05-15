@@ -4,9 +4,9 @@ import speech_recognition as sr
 import requests
 from dotenv import load_dotenv
 import os
-from model.mongoRAG import OpenAI_init_LLM, rag_template, conn_to_cluster, get_vectorstore, process
-from openai import OpenAI
+from model.mongoRAG import *
 from pymongo import MongoClient
+from langchain_openai import ChatOpenAI
 
 
 # pip install elevenlabs
@@ -34,7 +34,7 @@ r = sr.Recognizer()
 
 # model initialization
 print("initalize LLM")
-llm = OpenAI_init_LLM()
+llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.3)
 
 '''
 try:
@@ -66,8 +66,8 @@ print("model loaded\n")
 @app.route('/counselorai', methods=['POST'])
 def counselorai():
     text = request.json.get('text', '')
-    llm_output = process(llm, vectorstore, text)
-    response = jsonify({"text": "Therapist: " + llm_output})
+    llm_output = process(MONGODB_COLLECTION, vectorstore, text,llm)
+    response = jsonify({"text": "Therapist: " + str(llm_output)})
     return response
 
 @app.route('/speech_to_text', methods=['POST','GET'])
