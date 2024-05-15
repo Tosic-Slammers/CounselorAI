@@ -1,4 +1,7 @@
 Made SpeechRec into a flask file. Need to run SpeechRec for the voice-page listen button to work.
 
-Make sure to install PyAudio, SpeechRecognition, Flask, and flask-cors
+Make sure to install PyAudio, SpeechRecognition, Flask, flask-cors, elevenlabs
 using pip install {library name}
+
+install node.js: https://nodejs.org/en
+npm install next
