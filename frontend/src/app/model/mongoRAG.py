@@ -103,6 +103,7 @@ def qa_sys_prompt():
     refer them to the Suicide Hotline phone and text service - '988' - note this is only for USA users.
     Use the following pieces of retrieved context to answer the question at the end.
     If you don't know the answer, just say that you don't know.
+    Do not by any means mention the phrase or a similar phrase to: In the context of the book.
     {context}"""
     
     qa_prompt = ChatPromptTemplate.from_messages(
@@ -149,11 +150,9 @@ def get_response(MONGODB_COLLECTION, u_input, llm):
         "configurable": {"session_id": "abc123"}
     },
     )["answer"]
-
 #clear messsages storage on exit
 def clear_store():
     return store.clear()
-
 
 def process(MONGODB_COLLECTION, vectorstore, text, llm):
     print("processing")
