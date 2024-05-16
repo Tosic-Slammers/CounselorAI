@@ -34,7 +34,7 @@ r = sr.Recognizer()
 
 # model initialization
 print("initalize LLM")
-llm = ChatOpenAI(model_name="ft:gpt-3.5-turbo-0125:personal:counselorai:9PBfTcd4", temperature=0.3)
+llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.3)
 
 '''
 try:
