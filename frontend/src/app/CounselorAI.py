@@ -127,6 +127,10 @@ def text_to_speech_stream():
     # Return the stream for further use
     return send_file(audio_stream, mimetype='audio/mpeg', as_attachment=False, download_name="audio.mp3")
 
+@app.route('/clear_store', methods=['POST'])
+def clear_store_endpoint():
+    clear_store()
+    return jsonify({"status": "success", "message": "Chat history cleared"}), 200
 
 if __name__ == '__main__':
     app.run(port=5001)
