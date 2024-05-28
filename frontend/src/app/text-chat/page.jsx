@@ -15,7 +15,7 @@ export default function TextChat() {
         console.log(response.data);
         setMessages([...messages, 
           { text: inputValue, sender: 'user' }, 
-          { text: response.data.text, sender: "ai" }
+          { text: "Therapist: " + response.data.text, sender: "ai" }
         ]);
         setInputValue('');
       } catch (error) {

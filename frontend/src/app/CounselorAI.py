@@ -67,7 +67,7 @@ print("model loaded\n")
 def counselorai():
     text = request.json.get('text', '')
     llm_output = process(MONGODB_COLLECTION, vectorstore, text,llm)
-    response = jsonify({"text": "Therapist: " + str(llm_output)})
+    response = jsonify({"text": str(llm_output)})
     return response
 
 @app.route('/speech_to_text', methods=['POST','GET'])
@@ -82,8 +82,11 @@ def speech_to_text():
         print("Processing audio...")
         try:
             text = r.recognize_google(audio)
+            print("message: ", text)
             response = requests.post("http://127.0.0.1:5001/counselorai", json={"text": text})
-            return jsonify({"message": "You: " + response.text})
+            response = response.text
+            conversation = {"You": text, "Therapist: ": response}
+            return jsonify({"message": response})
         except Exception as e:
             return jsonify({"error": str(e)})
 

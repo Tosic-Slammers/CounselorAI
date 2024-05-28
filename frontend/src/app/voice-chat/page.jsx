@@ -13,7 +13,11 @@ function VoiceChatPage() {
     if (!listening) {
       try {
         const result = await axios.post('http://localhost:5001/speech_to_text');
-        const message = result.data.message || "No response"; // Ensure there's always a message string.
+        let message = result.data.message || "No response"; // Ensure there's always a message string.
+        if (message !== "No response"){
+          message = JSON.parse(result.data.message).text;
+        }
+        console.log(message)
         const newHistory = [...conversationHistory, { text: message }];
         setConversationHistory(newHistory);
         setResponse(message);
