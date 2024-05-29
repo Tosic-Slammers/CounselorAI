@@ -1,7 +1,5 @@
 # CounselorAI
 
-![stock_thera](https://media.istockphoto.com/id/1388115351/photo/shot-of-a-young-man-having-a-therapeutic-session-with-a-psychologist.jpg?s=612x612&w=0&k=20&c=ABgfdHZRpzQCZpngz7jiaMfBiD081f5SONMTitDAGmQ=)
-
 ### Finetuned RAG AI Therapist Model Demonstration
 ![demo1](https://i.imgur.com/xbNr6uT.png)
 
