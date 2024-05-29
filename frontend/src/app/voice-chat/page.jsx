@@ -28,6 +28,8 @@ function VoiceChatPage() {
         setConversationHistory(newHistory);
         setResponse('Error: Failed to fetch data');
         console.error('Error fetching data:', error);
+      } finally {
+        setListening(false); 
       }
     }
   };
