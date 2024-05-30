@@ -9,8 +9,10 @@ export default function TextChat() {
   const handleSendClick = async () => {
     if (inputValue.trim() !== '') {
       try {
+        const token = localStorage.getItem('counselorai-token')
         const response = await axios.post('http://localhost:5001/counselorai', {
-          text: inputValue
+          text: inputValue,
+          u_id: token
         });
         console.log(response.data);
         setMessages([...messages, 
@@ -36,7 +38,10 @@ export default function TextChat() {
 
   const handleClearChat = async () => {
     try {
-      await axios.post('http://localhost:5001/clear_store');
+      const token = localStorage.getItem('counselorai-token')
+      await axios.post('http://localhost:5001/clear_store',{
+        u_id: token
+      });
       setMessages([]);
     } catch (error) {
       console.error("Error clearing chat history", error);
