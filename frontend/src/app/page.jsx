@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+"use client"
+import { useEffect } from 'react';
 import axios from 'axios';
 
 export default function Home() {  
@@ -8,7 +9,7 @@ export default function Home() {
       const storedToken = localStorage.getItem('counselorai-token');
       if (!storedToken) {
         try {
-          const response = await axios.get('http://localhost:5001/counselorai');
+          const response = await axios.post('http://localhost:5001/generate_id');
           const newToken = response.data.token;
           localStorage.setItem('counselorai-token', newToken);
         } catch (error) {
@@ -19,8 +20,6 @@ export default function Home() {
 
     fetchToken();
   }, []);
-
-  console.log(localStorage.getItem('counserlorai-token'));
 
   return (
       <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center px-6">
