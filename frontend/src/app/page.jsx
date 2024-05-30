@@ -9,7 +9,7 @@ export default function Home() {
       const storedToken = localStorage.getItem('counselorai-token');
       if (!storedToken) {
         try {
-          const response = await axios.post('http://localhost:5001/generate_id');
+          const response = await axios.post('http://counselor-ai-57a917e8710a.herokuapp.com/generate_id');
           const newToken = response.data.token;
           localStorage.setItem('counselorai-token', newToken);
         } catch (error) {

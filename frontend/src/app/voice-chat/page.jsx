@@ -12,7 +12,7 @@ function VoiceChatPage() {
     setListening(current => !current);
     if (!listening) {
       try {
-        const result = await axios.post('http://localhost:5001/speech_to_text');
+        const result = await axios.post('http://counselor-ai-57a917e8710a.herokuapp.com/speech_to_text');
         let message = result.data.message || "No response"; // Ensure there's always a message string.
         if (message !== "No response"){
           message = JSON.parse(result.data.message).text;
@@ -38,7 +38,7 @@ function VoiceChatPage() {
   const fetchAudio = async (text) => {
     try {
         console.log('Sending text-to-speech request...');
-        const tts = await fetch('http://localhost:5001/text_to_speech', {
+        const tts = await fetch('http://counselor-ai-57a917e8710a.herokuapp.com/text_to_speech', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

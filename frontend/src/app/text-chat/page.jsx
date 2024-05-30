@@ -10,7 +10,7 @@ export default function TextChat() {
     if (inputValue.trim() !== '') {
       try {
         const token = localStorage.getItem('counselorai-token')
-        const response = await axios.post('http://localhost:5001/counselorai', {
+        const response = await axios.post('http://counselor-ai-57a917e8710a.herokuapp.com/counselorai', {
           text: inputValue,
           u_id: token
         });
@@ -39,7 +39,7 @@ export default function TextChat() {
   const handleClearChat = async () => {
     try {
       const token = localStorage.getItem('counselorai-token')
-      await axios.post('http://localhost:5001/clear_store',{
+      await axios.post('http://counselor-ai-57a917e8710a.herokuapp.com/clear_store',{
         u_id: token
       });
       setMessages([]);
