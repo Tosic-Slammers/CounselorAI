@@ -1,4 +1,27 @@
-export default function Home() {
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+export default function Home() {  
+  
+  useEffect(() => {
+    const fetchToken = async () => {
+      const storedToken = localStorage.getItem('counselorai-token');
+      if (!storedToken) {
+        try {
+          const response = await axios.get('http://localhost:5001/counselorai');
+          const newToken = response.data.token;
+          localStorage.setItem('counselorai-token', newToken);
+        } catch (error) {
+          console.error('Error fetching token:', error);
+        }
+      }
+    };
+
+    fetchToken();
+  }, []);
+
+  console.log(localStorage.getItem('counserlorai-token'));
+
   return (
       <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center px-6">
         <h1 className="text-5xl font-bold text-gray-800 mb-2">
